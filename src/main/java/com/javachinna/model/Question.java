@@ -23,5 +23,5 @@ public class Question {
     private Type type;
     @OneToOne(mappedBy = "question")
     private Mesure mesures;
-
+//ceci un commentaire
 }
