@@ -22,6 +22,17 @@ public class Referentiel implements Serializable {
     @JsonIgnore
     @OneToOne(mappedBy = "referentiel")
     private User user;
-
+    @JsonIgnore
+    @OneToOne
+    private Domain domain;
+    @JsonIgnore
+    @OneToOne
+    private Categorie categorie;
+    @JsonIgnore
+    @OneToOne
+    private Mesure mesure;
+    @JsonIgnore
+    @OneToOne
+    private Question question;
 
 }

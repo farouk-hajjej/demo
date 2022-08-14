@@ -1,5 +1,6 @@
 package com.javachinna.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,7 +22,11 @@ public class Question {
     private String Recommandation;
     @Enumerated(EnumType.STRING)
     private Type type;
+    @JsonIgnore
     @OneToOne(mappedBy = "question")
     private Mesure mesures;
+    @JsonIgnore
+    @OneToOne(mappedBy = "question")
+    private Referentiel referentiel;
 //ceci un commentaire
 }

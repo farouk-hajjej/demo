@@ -19,5 +19,8 @@ public class Domain implements Serializable {
     @JsonIgnore
     @OneToOne
     private Categorie categorie;
+    @JsonIgnore
+    @OneToOne(mappedBy = "domain")
+    private Referentiel referentiel;
 
 }

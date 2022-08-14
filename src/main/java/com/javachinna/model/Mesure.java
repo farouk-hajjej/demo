@@ -18,5 +18,8 @@ public class Mesure implements Serializable {
     @JsonIgnore
     @OneToOne
     private Question question;
+    @JsonIgnore
+    @OneToOne(mappedBy = "mesure")
+    private Referentiel referentiel;
 
 }
