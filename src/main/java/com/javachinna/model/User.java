@@ -51,12 +51,13 @@ public class User implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date createdDate;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	protected Date modifiedDate;
 
 	private String password;
 
 	private String provider;
+	String path;
 
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -69,7 +70,7 @@ public class User implements Serializable {
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "ROLE_ID") })
 	private Set<Role> roles;
 	@JsonIgnore
-	@OneToOne
+	@OneToOne(mappedBy = "user")
 	private Referentiel referentiel;
 
 }

@@ -21,17 +21,16 @@ public interface UserService {
 
  void addUser(User user);
 	void updateUser(User u, Long idU);
+	List<User> retrieveAllUsers();
+	void deleteUser ( Long id);
 
 	User retrieveUser (Long id);
 
-	List<User> retrieveAllUsers();
+
 	void SearchHistorique(String keyword);
+	User findById(Long id);
 
 	List<User> searchmultilplUser(String key);
-
-
-	void deleteUser ( Long id);
-
 	 User registerNewUser(SignUpRequest signUpRequest) throws UserAlreadyExistAuthenticationException;
 
 	User findUserByEmail(String email);

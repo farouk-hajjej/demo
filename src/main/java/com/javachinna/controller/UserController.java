@@ -1,4 +1,6 @@
 package com.javachinna.controller;
+import com.google.zxing.WriterException;
+import com.javachinna.QrCode.QRCodeGenerator;
 import com.javachinna.model.DatabaseFile;
 import com.javachinna.model.User;
 import com.javachinna.payLoad.Response;
@@ -25,7 +27,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,8 +42,10 @@ public class UserController {
 	@Autowired
 	private DatabaseFileService fileStorageService;
 	@Autowired
-	exportPdf exportPdfservice;
+	 exportPdf exportPdfservice;
 
+
+	private static final String QR_CODE_IMAGE_PATH = "./src/main/resources/QRCode.png";
 
 	@ApiOperation(value = " Search Historique ")
 	@PostMapping("/SearchHistorique/{keyword}")
@@ -108,8 +114,36 @@ public class UserController {
 	@PostMapping("/addUser")
 	@ResponseBody
 	@ApiOperation(value = "Add User")
-	public void addPartner (@RequestBody User user) {
+	public void addUser (@RequestBody User user) {
+		byte[] image = new byte[0];
+		try {
+
+			// Generate and Return Qr Code in Byte Array
+			image = QRCodeGenerator.getQRCodeImage(user.getEmail(),250,250);
+
+			QRCodeGenerator.generateQRCodeImage(user.getEmail(),250,250,QR_CODE_IMAGE_PATH);
+
+			// Generate and Save Qr Code Image in static/image folder
+
+		} catch (WriterException | IOException e) {
+
+			e.printStackTrace();
+		}
+		// Convert Byte Array into Base64 Encode String
+		String qrcode = Base64.getEncoder().encodeToString(image);
 		userService.addUser(user);
+	}
+
+	@GetMapping(value = "/genrateAndDownloadQRCode/{width}/{height}/{id}")
+	public void download(
+			@PathVariable("width") Integer width,
+			@PathVariable("height") Integer height,@PathVariable("id") Long id)
+			throws Exception {
+
+		User user=userService.findById(id);
+		String path= user.getPath();
+		QRCodeGenerator.generateQRCodeImage(path, width, height, QR_CODE_IMAGE_PATH);
+
 	}
 
 

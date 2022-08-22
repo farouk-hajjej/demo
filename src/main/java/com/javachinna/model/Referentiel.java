@@ -16,11 +16,9 @@ public class Referentiel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long code;
-    @Enumerated(EnumType.STRING)
-    private Niveau niveau;
     private String Intitule;
     @JsonIgnore
-    @OneToOne(mappedBy = "referentiel")
+    @OneToOne
     private User user;
     @JsonIgnore
     @OneToOne
@@ -28,9 +26,6 @@ public class Referentiel implements Serializable {
     @JsonIgnore
     @OneToOne
     private Categorie categorie;
-    @JsonIgnore
-    @OneToOne
-    private Mesure mesure;
     @JsonIgnore
     @OneToOne
     private Question question;

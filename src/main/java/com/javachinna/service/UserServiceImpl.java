@@ -1,8 +1,16 @@
 package com.javachinna.service;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.*;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.javachinna.model.Search;
 import com.javachinna.repo.ISearchRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +52,10 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private ISearchRepo iSearchRepo;
 
-
+	@Override
+	public User findById(Long id) {
+		return userRepository.findById(id).get() ;
+	}
 	@Override
 	public void addUser(User user) {
 		user.setCreatedDate(new Date());
@@ -76,6 +87,16 @@ public class UserServiceImpl implements UserService {
 			users.add(user);
 		});
 		return users;
+	}
+//-------------------Generation de QR code-----------------------------
+
+	public static void generateQRCodeImage(String url, int width, int height, String filePath)
+			throws WriterException, IOException {
+		QRCodeWriter qrCodeWriter = new QRCodeWriter();
+		BitMatrix bitMatrix = qrCodeWriter.encode(url, BarcodeFormat.QR_CODE, width, height);
+		Path path = FileSystems.getDefault().getPath(filePath);
+		MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
+
 	}
 
 	@Override
@@ -122,7 +143,7 @@ public class UserServiceImpl implements UserService {
 		User user = buildUser(signUpRequest);
 		Date now = Calendar.getInstance().getTime();
 		user.setCreatedDate(now);
-		user.setModifiedDate(now);
+	//0	user.setModifiedDate(now);
 		user = userRepository.save(user);
 		userRepository.flush();
 		return user;
@@ -170,6 +191,7 @@ public class UserServiceImpl implements UserService {
 
 		return LocalUser.create(user, attributes, idToken, userInfo);
 	}
+
 
 	private User updateExistingUser(User existingUser, OAuth2UserInfo oAuth2UserInfo) {
 		existingUser.setDisplayName(oAuth2UserInfo.getName());

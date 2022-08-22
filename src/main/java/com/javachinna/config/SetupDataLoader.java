@@ -50,7 +50,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
 			user = new User();
-			user.setDisplayName("Admin");
+			user.setDisplayName("Hajjej Farouk");
 			user.setEmail(email);
 			user.setPassword(passwordEncoder.encode("admin@"));
 			user.setRoles(roles);
@@ -58,7 +58,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			user.setEnabled(true);
 			Date now = Calendar.getInstance().getTime();
 			user.setCreatedDate(now);
-			user.setModifiedDate(now);
+			//user.setModifiedDate(now);
 			user = userRepository.save(user);
 		}
 		return user;

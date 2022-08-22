@@ -14,17 +14,15 @@ import javax.persistence.*;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long codeQues;
+    private  Long id;
     private String Domain;
     private String Categorie;
     private String Mesure;
+    private String code;
     private String Contenu;
     private String Recommandation;
     @Enumerated(EnumType.STRING)
     private Type type;
-    @JsonIgnore
-    @OneToOne(mappedBy = "question")
-    private Mesure mesures;
     @JsonIgnore
     @OneToOne(mappedBy = "question")
     private Referentiel referentiel;
