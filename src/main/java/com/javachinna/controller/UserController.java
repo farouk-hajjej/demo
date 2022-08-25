@@ -6,8 +6,10 @@ import com.javachinna.model.User;
 import com.javachinna.payLoad.Response;
 import com.javachinna.service.DatabaseFileService;
 import com.javachinna.service.UserService;
+import com.javachinna.service.exportExcel;
 import com.javachinna.service.exportPdf;
 import io.swagger.annotations.ApiOperation;
+import org.apache.poi.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
@@ -25,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -43,6 +46,8 @@ public class UserController {
 	private DatabaseFileService fileStorageService;
 	@Autowired
 	 exportPdf exportPdfservice;
+	@Autowired
+	exportExcel exportExcelservice;
 
 
 	private static final String QR_CODE_IMAGE_PATH = "./src/main/resources/QRCode.png";
@@ -64,18 +69,26 @@ public class UserController {
 	}
 
 
-	@GetMapping(value = "/ListeUserpdf", produces = MediaType.APPLICATION_PDF_VALUE)
+	@GetMapping(value = "/export/pdf", produces = MediaType.APPLICATION_PDF_VALUE)
+	//@PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
 	public ResponseEntity<InputStreamResource> exportTermsPDF(){
 		List<User> userList = userService.retrieveAllUsers ();
-		ByteArrayInputStream bais = exportPdfservice.UserPDFReport (userList);
+		ByteArrayInputStream bais = exportPdfservice.UserPDFReport(userList);
 		HttpHeaders headers = new HttpHeaders();
-
-		headers.add("Content-Disposition", "attachment;filename=ListeDesUtilisateurs.pdf");
+		headers.add("Content-Disposition", "attachment;filename=Users.pdf");
 
 		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
 				.body(new InputStreamResource(bais));
 	}
-
+	@ApiOperation(value = "Download The List of Users")
+	@GetMapping("/download/Users.xlsx")
+	public void downloadCsv(HttpServletResponse response) throws IOException {
+		List<User> userList =(List<User>) userService.retrieveAllUsers();
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment; filename=Users.xlsx");
+		ByteArrayInputStream stream = exportExcelservice.userExcelFile(userList);
+		IOUtils.copy(stream, response.getOutputStream());
+	}
 
 	@PostMapping("/uploadFile/{idU}")
 	@ResponseBody

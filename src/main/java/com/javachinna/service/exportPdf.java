@@ -15,14 +15,14 @@ import java.util.stream.Stream;
 @Service
 public class exportPdf {
 
-    public ByteArrayInputStream UserPDFReport(List<User> userList)  {
+    public static ByteArrayInputStream UserPDFReport(List<User> userList)  {
         Document document=new Document();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         try {
             PdfWriter.getInstance(document,out);
             document.open();
             //add text to pdf file
-            Font font= FontFactory.getFont(FontFactory.COURIER,12, BaseColor.LIGHT_GRAY);
+            com.itextpdf.text.Font font= FontFactory.getFont(FontFactory.COURIER,12, BaseColor.LIGHT_GRAY);
             Paragraph para = new Paragraph("Liste Des Utilisateurs ",font);
             para.setAlignment(Element.ALIGN_CENTER);
             document.add(para);
@@ -32,7 +32,7 @@ public class exportPdf {
             //make the columns
             Stream.of("Id User","Nom & Prénom","Email","Activé","Date De Creation","Date De Modification").forEach(headerTitle -> {
                 PdfPCell header = new PdfPCell();
-                Font headfont= FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+                com.itextpdf.text.Font headfont= FontFactory.getFont(FontFactory.HELVETICA_BOLD);
                 header.setBackgroundColor(BaseColor.YELLOW);
                 header.setBorderWidth(12);
                 header.setHorizontalAlignment(Element.ALIGN_CENTER);
