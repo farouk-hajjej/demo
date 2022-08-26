@@ -22,6 +22,7 @@ C:\Users\Farouk Hajjej\Desktop\spring-boot-oauth2-social-login\src\main\java\com
 C:\Users\Farouk Hajjej\Desktop\spring-boot-oauth2-social-login\src\main\java\com\javachinna\repo\RoleRepository.java
 C:\Users\Farouk Hajjej\Desktop\spring-boot-oauth2-social-login\src\main\java\com\javachinna\fileUpload\FileNoteFoundException.java
 C:\Users\Farouk Hajjej\Desktop\spring-boot-oauth2-social-login\src\main\java\com\javachinna\config\SwaggerConfig.java
+C:\Users\Farouk Hajjej\Desktop\spring-boot-oauth2-social-login\src\main\java\com\javachinna\service\ISendEmailService.java
 C:\Users\Farouk Hajjej\Desktop\spring-boot-oauth2-social-login\src\main\java\com\javachinna\service\QuestionServiceImpl.java
 C:\Users\Farouk Hajjej\Desktop\spring-boot-oauth2-social-login\src\main\java\com\javachinna\security\oauth2\OAuth2AuthenticationSuccessHandler.java
 C:\Users\Farouk Hajjej\Desktop\spring-boot-oauth2-social-login\src\main\java\com\javachinna\dto\JwtAuthenticationResponse.java
@@ -64,4 +65,5 @@ C:\Users\Farouk Hajjej\Desktop\spring-boot-oauth2-social-login\src\main\java\com
 C:\Users\Farouk Hajjej\Desktop\spring-boot-oauth2-social-login\src\main\java\com\javachinna\dto\SocialProvider.java
 C:\Users\Farouk Hajjej\Desktop\spring-boot-oauth2-social-login\src\main\java\com\javachinna\exception\handler\RestResponseEntityExceptionHandler.java
 C:\Users\Farouk Hajjej\Desktop\spring-boot-oauth2-social-login\src\main\java\com\javachinna\config\WebSecurityConfig.java
+C:\Users\Farouk Hajjej\Desktop\spring-boot-oauth2-social-login\src\main\java\com\javachinna\service\SendEmailService.java
 C:\Users\Farouk Hajjej\Desktop\spring-boot-oauth2-social-login\src\main\java\com\javachinna\controller\UserController.java

@@ -51,6 +51,8 @@ public class UserServiceImpl implements UserService {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private ISearchRepo iSearchRepo;
+	@Autowired
+	private SendEmailService sendEmailService;
 
 	@Override
 	public User findById(Long id) {
@@ -146,6 +148,8 @@ public class UserServiceImpl implements UserService {
 	//0	user.setModifiedDate(now);
 		user = userRepository.save(user);
 		userRepository.flush();
+		sendEmailService.sendSimpleEmail(user.getEmail(),"your complaint is taken care of!","Complaint Response");
+
 		return user;
 	}
 
