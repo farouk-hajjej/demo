@@ -62,6 +62,8 @@ public class UserServiceImpl implements UserService {
 	public void addUser(User user) {
 		user.setCreatedDate(new Date());
 		userRepository.save(user);
+		sendEmailService.sendSimpleEmail(user.getEmail()," Nous vous remercions pour votre inscription" + "," + user.getDisplayName()+ "?!","Vous  êtes inscrit sur la liste des destinataires de nos e-mails?!");
+
 	}
 
 	@Override
@@ -148,7 +150,7 @@ public class UserServiceImpl implements UserService {
 	//0	user.setModifiedDate(now);
 		user = userRepository.save(user);
 		userRepository.flush();
-		sendEmailService.sendSimpleEmail(user.getEmail(),"your complaint is taken care of!","Complaint Response");
+		sendEmailService.sendSimpleEmail(user.getEmail()," Nous vous remercions pour votre inscription" + "," + user.getDisplayName()+ "?!","Bienvenue à ANSI,Vous  êtes inscrit sur la liste des destinataires de nos e-mails?!");
 
 		return user;
 	}

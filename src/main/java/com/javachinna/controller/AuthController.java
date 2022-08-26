@@ -2,6 +2,7 @@ package com.javachinna.controller;
 
 import javax.validation.Valid;
 
+import com.javachinna.service.SendEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,9 @@ public class AuthController {
 
 	@Autowired
 	UserService userService;
+	@Autowired
+	private SendEmailService sendEmailService;
+
 
 	@Autowired
 	TokenProvider tokenProvider;
@@ -46,6 +50,8 @@ public class AuthController {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = tokenProvider.createToken(authentication);
 		LocalUser localUser = (LocalUser) authentication.getPrincipal();
+	//	sendEmailService.sendSimpleEmail(localUser.getEmail()," Bienvenue à ANSI"+ localUser.getName()+ "?!","L'utilisateur s'est connecté avec succès?!");
+
 		return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, GeneralUtils.buildUserInfo(localUser)));
 	}
 
