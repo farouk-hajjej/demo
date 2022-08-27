@@ -12,14 +12,20 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
-
 public class Categorie implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCat;
+    private String codeCategorie;
     @JsonIgnore
-    @OneToOne (mappedBy = "categorie")
+    @OneToOne
     private Domain domain;
+   // @JsonIgnore
+   // @OneToOne(mappedBy = "categorie");
+    //private Mesure mesure;
+   @JsonIgnore
+    @OneToOne(mappedBy = "categorie")
+    private Mesure mesure;
     @JsonIgnore
     @OneToOne(mappedBy = "categorie")
     private Referentiel referentiel;

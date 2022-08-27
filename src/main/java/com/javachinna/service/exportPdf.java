@@ -75,8 +75,9 @@ public class exportPdf {
                 DateCCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 DateCCell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(DateCCell);
+              //  dataRow.createCell(5).setCellValue(String.valueOf(userList.get(i).getModifiedDate()));
 
-                PdfPCell DateMCell = new PdfPCell(new Phrase(u.getModifiedDate().toString()));
+                PdfPCell DateMCell = new PdfPCell(new Phrase((String.valueOf(u.getModifiedDate()))));
                 DateMCell.setPaddingLeft(1);
                 DateMCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 DateMCell.setHorizontalAlignment(Element.ALIGN_LEFT);

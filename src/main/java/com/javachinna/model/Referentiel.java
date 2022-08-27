@@ -28,6 +28,10 @@ public class Referentiel implements Serializable {
     private Categorie categorie;
     @JsonIgnore
     @OneToOne
+    private Mesure mesure;
+    @JsonIgnore
+    @OneToOne
     private Question question;
+
 
 }

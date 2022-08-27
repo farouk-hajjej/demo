@@ -7,21 +7,20 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
-
-public class Domain implements Serializable {
+public class Mesure implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idDom;
-    private String codeDomaine;
+    private Long idMes;
+    private String codeMesure;
+    @OneToOne(mappedBy = "mesure")
     @JsonIgnore
-    @OneToOne(mappedBy = "domain")
-    private Categorie categorie;
-    @JsonIgnore
-    @OneToOne(mappedBy = "domain")
     private Referentiel referentiel;
-
+    @OneToOne
+    @JsonIgnore
+    private Categorie categorie;
 }
