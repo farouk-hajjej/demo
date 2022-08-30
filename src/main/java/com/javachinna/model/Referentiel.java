@@ -15,7 +15,8 @@ import java.io.Serializable;
 public class Referentiel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long code;
+    private Long idRef;
+    private String code;
     private String Intitule;
     @JsonIgnore
     @OneToOne
