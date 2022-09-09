@@ -9,5 +9,5 @@ public interface QuestionService {
     void addQuestion(Question q);
     void UpdateQuestion(Question q, Long idQu);
     List<Question> retrieveAllQuestions();
-    void deleteQuestion ( Long id);
+    void deleteQuestion ( Long idQes);
 }

@@ -18,14 +18,14 @@ public class ReferentielController {
     @ApiOperation(value = "Add Referentiel And Assign To Others ")
     @PostMapping("/AddReferentielAndAssignToOthers/{idCat}/{idDom}/{idMes}/{idQes}/{idU}")
     @ResponseBody
-    void ajouterReferentielEtAffectterToOthers(@RequestBody  Referentiel r,@PathVariable("idCat") Long idCat,@PathVariable("idDom") Long idDom,@PathVariable("idMes") Long idMes, @PathVariable("idQes") Long idQes,@PathVariable("idU") Long idU){
-      referentielService.ajouterReferentielEtAffectterToOthers(r,idCat,idDom,idMes,idQes,idU);
+    void ajouterReferentielEtAffectterToOthers(@RequestBody  Referentiel r,@PathVariable("idCat") Long idCat,@PathVariable("idDom") Long idDom,@PathVariable("idMes") Long idMes, @PathVariable("idQes") Long idQes){
+      referentielService.ajouterReferentielEtAffectterToOthers(r,idCat,idDom,idMes,idQes);
     }
     @ApiOperation(value = "update Referentiel By Id ")
     @PutMapping("/updateReferentielById/{idCat}/{idDom}/{idMes}/{idQes}/{idU}")
     @ResponseBody
-    void UpdateReferentiel(@RequestBody  Referentiel r,@PathVariable("idCat") Long idCat,@PathVariable("idDom") Long idDom,@PathVariable("idMes") Long idMes, @PathVariable("idQes") Long idQes,@PathVariable("idU") Long idU){
-          referentielService.UpdateReferentiel(r,idCat,idDom,idMes,idQes,idU);
+    void UpdateReferentiel(@RequestBody  Referentiel r,@PathVariable("idCat") Long idCat,@PathVariable("idDom") Long idDom,@PathVariable("idMes") Long idMes, @PathVariable("idQes") Long idQes){
+          referentielService.UpdateReferentiel(r,idCat,idDom,idMes,idQes);
     }@ApiOperation(value = "retrieve All Referentiels ")
     @GetMapping("/retrieve-All-Referentiels")
     @ResponseBody
@@ -33,7 +33,7 @@ public class ReferentielController {
       return referentielService.retrieveAllReferentiels();
     }
     @ApiOperation(value = "delete Referentiel By Id ")
-    @GetMapping("/deleteCategoryById/{idRef}")
+    @GetMapping("/deleteReferentielById/{idRef}")
     @ResponseBody
     void deleteReferentiel (@PathVariable("idRef") Long idRef){
      referentielService.deleteReferentiel(idRef);

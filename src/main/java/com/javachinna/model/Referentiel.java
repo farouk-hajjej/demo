@@ -18,9 +18,7 @@ public class Referentiel implements Serializable {
     private Long idRef;
     private String code;
     private String Intitule;
-    @JsonIgnore
-    @OneToOne
-    private User user;
+
     @JsonIgnore
     @OneToOne
     private Domain domain;

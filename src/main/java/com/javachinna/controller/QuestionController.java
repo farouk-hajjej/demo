@@ -36,8 +36,8 @@ public class QuestionController {
     @ApiOperation(value = "delete Qusetion By Id ")
     @GetMapping("/deleteQuestionById/{idQu}")
     @ResponseBody
-    public void deleteQuestion(@PathVariable("idQu")Long id)
+    public void deleteQuestion(@PathVariable("idQu")Long idQes)
     {
-        questionService.deleteQuestion(id);
+        questionService.deleteQuestion(idQes);
     }
 }

@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
 	public void addUser(User user) {
 		user.setCreatedDate(new Date());
 		userRepository.save(user);
-		sendEmailService.sendSimpleEmail(user.getEmail()," Nous vous remercions pour votre inscription" + "," + user.getDisplayName()+ "?!","Vous  êtes inscrit sur la liste des destinataires de nos e-mails?!");
+		//sendEmailService.sendSimpleEmail(user.getEmail()," Nous vous remercions pour votre inscription" + "," + user.getDisplayName()+ "?!","Vous  êtes inscrit sur la liste des destinataires de nos e-mails?!");
 
 	}
 
