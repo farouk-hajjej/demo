@@ -21,15 +21,15 @@ public class ReferentielServiceImpl implements IReferentielService{
     @Autowired
     IReferentielRepo referentielRepo;
     @Override
-    public void ajouterReferentielEtAffectterToOthers(Referentiel r, Long idCat, Long idDom, Long idMes, Long idQes) {
-        Categorie ca=categoryRepo.findById(idCat).orElse(null);
+    public void ajouterReferentielEtAffectterToOthers(Referentiel r, Long idDom, Long idQes) {
+        //Categorie ca=categoryRepo.findById(idCat).orElse(null);
         Domain domain=domaineRepo.findById(idDom).orElse(null);
-        Mesure mesure=mesureRepo.findById(idMes).orElse(null);
+      //  Mesure mesure=mesureRepo.findById(idMes).orElse(null);
         Question question=questionRepo.findById(idQes).orElse(null);
         //User user=userRepository.findById(idU).orElse(null);
-        r.setCategorie(ca);
+       // r.setCategorie(ca);
         r.setDomain(domain);
-        r.setMesure(mesure);
+       // r.setMesure(mesure);
         r.setQuestion(question);
        // r.setUser(user);
         referentielRepo.save(r);
@@ -38,15 +38,15 @@ public class ReferentielServiceImpl implements IReferentielService{
     }
 
     @Override
-    public void UpdateReferentiel(Referentiel r, Long idCat, Long idDom, Long idMes, Long idQes) {
-        Categorie c=categoryRepo.findById(idCat).orElse(null);
+    public void UpdateReferentiel(Referentiel r, Long idDom, Long idQes) {
+       // Categorie c=categoryRepo.findById(idCat).orElse(null);
         Domain domain=domaineRepo.findById(idDom).orElse(null);
-        Mesure mesure=mesureRepo.findById(idMes).orElse(null);
+      //  Mesure mesure=mesureRepo.findById(idMes).orElse(null);
         Question question=questionRepo.findById(idQes).orElse(null);
        // User user=userRepository.findById(idU).orElse(null);
-        r.setCategorie(c);
+       // r.setCategorie(c);
         r.setDomain(domain);
-        r.setMesure(mesure);
+       // r.setMesure(mesure);
         r.setQuestion(question);
         //r.setUser(user);
         referentielRepo.save(r);

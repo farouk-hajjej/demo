@@ -24,12 +24,6 @@ public class Referentiel implements Serializable {
     private Domain domain;
     @JsonIgnore
     @OneToOne
-    private Categorie categorie;
-    @JsonIgnore
-    @OneToOne
-    private Mesure mesure;
-    @JsonIgnore
-    @OneToOne
     private Question question;
 
 

@@ -26,8 +26,6 @@ public class Categorie implements Serializable {
    @JsonIgnore
     @OneToOne(mappedBy = "categorie")
     private Mesure mesure;
-    @JsonIgnore
-    @OneToOne(mappedBy = "categorie")
-    private Referentiel referentiel;
+
 
 }

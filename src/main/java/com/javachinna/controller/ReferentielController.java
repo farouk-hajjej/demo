@@ -16,16 +16,16 @@ public class ReferentielController {
     @Autowired
     IReferentielService referentielService;
     @ApiOperation(value = "Add Referentiel And Assign To Others ")
-    @PostMapping("/AddReferentielAndAssignToOthers/{idCat}/{idDom}/{idMes}/{idQes}/{idU}")
+    @PostMapping("/AddReferentielAndAssignToOthers/{idDom}/{idQes}")
     @ResponseBody
-    void ajouterReferentielEtAffectterToOthers(@RequestBody  Referentiel r,@PathVariable("idCat") Long idCat,@PathVariable("idDom") Long idDom,@PathVariable("idMes") Long idMes, @PathVariable("idQes") Long idQes){
-      referentielService.ajouterReferentielEtAffectterToOthers(r,idCat,idDom,idMes,idQes);
+    void ajouterReferentielEtAffectterToOthers(@RequestBody  Referentiel r,@PathVariable("idDom") Long idDom, @PathVariable("idQes") Long idQes){
+      referentielService.ajouterReferentielEtAffectterToOthers(r,idDom,idQes);
     }
     @ApiOperation(value = "update Referentiel By Id ")
-    @PutMapping("/updateReferentielById/{idCat}/{idDom}/{idMes}/{idQes}/{idU}")
+    @PutMapping("/updateReferentielById/{idDom}/{idQes}")
     @ResponseBody
-    void UpdateReferentiel(@RequestBody  Referentiel r,@PathVariable("idCat") Long idCat,@PathVariable("idDom") Long idDom,@PathVariable("idMes") Long idMes, @PathVariable("idQes") Long idQes){
-          referentielService.UpdateReferentiel(r,idCat,idDom,idMes,idQes);
+    void UpdateReferentiel(@RequestBody  Referentiel r,@PathVariable("idDom") Long idDom, @PathVariable("idQes") Long idQes){
+          referentielService.UpdateReferentiel(r,idDom,idQes);
     }@ApiOperation(value = "retrieve All Referentiels ")
     @GetMapping("/retrieve-All-Referentiels")
     @ResponseBody

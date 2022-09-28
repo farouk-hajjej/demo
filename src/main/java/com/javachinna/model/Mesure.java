@@ -17,9 +17,6 @@ public class Mesure implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMes;
     private String codeMesure;
-    @OneToOne(mappedBy = "mesure")
-    @JsonIgnore
-    private Referentiel referentiel;
     @OneToOne
     @JsonIgnore
     private Categorie categorie;
